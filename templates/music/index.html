@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <style>
+
+        a{
+            list-style-type: none;
+        }
+        li{
+            list-style-type: none;
+            padding-top: 3px;
+
+        }
+        .mx-auto{
+            padding-top: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container mx-auto">
+    <h1>Albums</h1>
+         {% if all_album %}
+             <ul class="list-group">
+            {% for albums in all_album %}
+                <li><a class ="list-group-item" href="{% url 'music:detail' albums.id %}">{{ albums.album_title }}</a></li>
+            {% endfor %}
+             </ul>
+        {% else %}
+            <h2>Sorry you dnt have any albums</h2>
+        {% endif %}
+    </div>
+
+</body>
+</html>

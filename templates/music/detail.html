@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+
+
+        a{
+            list-style-type: none;
+        }
+        li{
+            list-style-type: none;
+            padding-top: 3px;
+        }
+        .mx-auto{
+            padding-top: 20px;
+        }
+        .container{
+            padding-top: 10px;
+            background-image: inherit;
+        }
+        .img-circle{
+            height: 300px;
+            width: 300px;
+        }
+    </style>
+    <meta charset="UTF-8">
+
+    <title>Document</title>
+</head>
+<body>
+    <div class="container">
+    
+        <img class="img-circle" src="{{ album.album_logo }}" alt="">
+        <h1>{{ album.album_title }}</h1>
+        <h3>{{ album.artist }}</h3>
+       {% if error_message %}
+            <p><strong>{{ error_message }}</strong></p>
+       {% endif %}
+        <form action="{% url 'music:favourite' album.id %}" method="post">
+             {% csrf_token %}
+             {% for song in album.song_set.all %}
+                    <input type="radio" id ="song{{ forloop.counter }}" name="song" value="{{ song.id }}" id="">
+                    <label for="song{{ forloop.counter }}">
+                        {{ song.song_title }}
+                        {% if song.is_favourite %}
+                            <span class="fa fa-star"></span>
+                        {% endif %}
+                    </label><br>
+             {% endfor %}
+            <input type="submit",value="Favourite" >
+        </form>
+        <script>
+
+        </script>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    </div>
+<script
+  src="https://code.jquery.com/jquery-3.2.1.js"
+  integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="
+  crossorigin="anonymous"></script>
+</body>
+</html>
